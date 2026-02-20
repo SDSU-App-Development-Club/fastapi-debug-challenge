@@ -1,18 +1,16 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 app = FastAPI()
 
+products = [
+    {"id": 1, "name": "Laptop"},
+    {"id": 2, "name": "Mouse"},
+]
 
-class UserResponse(BaseModel):
-    username: str
-    email: str
 
-
-@app.get("/user", response_model=UserResponse)
-def get_user():
-    return {
-        "username": "alice",
-        "email": "alice@example.com",
-        "password": "secret123"
-    }
+@app.get("/products/{product_id}")
+def get_product(product_id: str):  # Bug: Should be int
+    for product in products:
+        if product["id"] == product_id:  # Comparing int to str
+            return product
+    return {"error": "Product not found"}
