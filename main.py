@@ -2,15 +2,10 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-products = [
-    {"id": 1, "name": "Laptop"},
-    {"id": 2, "name": "Mouse"},
-]
+users = []
 
 
-@app.get("/products/{product_id}")
-def get_product(product_id: str):
-    for product in products:
-        if product["id"] == product_id:
-            return product
-    return {"error": "Product not found"}
+@app.get("/users")
+def create_user(name: str):
+    users.append({"name": name})
+    return {"message": "User created"}
