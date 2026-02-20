@@ -1,4 +1,4 @@
-# FastAPI "Broke It, Fix It" Challenge
+# FastAPI Debug Challenge
 
 Hands-on debugging with FastAPI. Each branch has intentionally buggy code. Your job is to run it, find the bug, and fix it.
 
