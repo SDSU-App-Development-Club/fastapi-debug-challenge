@@ -1,16 +1,15 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+import time
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["GET"],
-    allow_headers=["*"],
-)
+
+async def slow_operation():
+    time.sleep(2)  # Blocks the entire server!
+    return {"status": "complete"}
 
 
-@app.post("/data")
-def post_data(data: dict):
-    return {"received": data}
+@app.get("/process")
+async def process_data():
+    result = slow_operation()  # Missing await
+    return result
