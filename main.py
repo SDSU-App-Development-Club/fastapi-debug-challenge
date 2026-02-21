@@ -5,11 +5,11 @@ app = FastAPI()
 
 
 async def slow_operation():
-    time.sleep(2)  # Blocks the entire server!
+    time.sleep(2)  
     return {"status": "complete"}
 
 
 @app.get("/process")
 async def process_data():
-    result = slow_operation()  # Missing await
+    result = slow_operation() 
     return result
