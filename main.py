@@ -14,5 +14,4 @@ def read_profile(user: dict = Depends(get_current_user)):
 
 @app.get("/settings")
 def read_settings():
-    # Bug: Trying to use 'user' without declaring it
     return {"user": user, "settings": {}}
