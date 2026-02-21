@@ -9,8 +9,8 @@ products = [
 
 
 @app.get("/products/{product_id}")
-def get_product(product_id: str):  # Bug: Should be int
+def get_product(product_id: str):
     for product in products:
-        if product["id"] == product_id:  # Comparing int to str
+        if product["id"] == product_id:  
             return product
     return {"error": "Product not found"}
